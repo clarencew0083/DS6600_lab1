@@ -1,0 +1,24 @@
+services:
+  jupyterlab:  
+    image: problem5
+    env_file:
+      - .env
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/problem5
+  postgres:
+    image: postgres:latest
+    env_file:
+      - .env
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - dbnetwork
+volumes:
+  postgresdata:
+
+networks:
+  dbnetwork:
